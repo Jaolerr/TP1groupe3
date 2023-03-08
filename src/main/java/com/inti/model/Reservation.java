@@ -35,8 +35,10 @@ public class Reservation {
 	
 	public Reservation() {
 		super();
+		this.date=LocalDate.now();
 	}
-
+	
+	
 
 	public Reservation(LocalDate date, int numero) {
 		super();
@@ -95,11 +97,8 @@ public class Reservation {
 	}
 
 
-	@Override
-	public String toString() {
-		return "Reservation [id=" + id + ", date=" + date + ", numero=" + numero + "]";
-	}
 
+	
 
 
 
@@ -113,6 +112,14 @@ public class Reservation {
 	public Vol getVol() {
 		return vol;
 	}
+
+
+	@Override
+	public String toString() {
+		return "Reservation [id=" + id + ", date=" + date + ", numero=" + numero + ", client=" + client + ", passager="
+				+ passager + ", vol=" + vol + "]";
+	}
+
 
 
 	public void setVol(Vol vol) {

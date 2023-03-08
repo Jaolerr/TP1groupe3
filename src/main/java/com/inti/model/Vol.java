@@ -3,6 +3,7 @@ package com.inti.model;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,23 +23,25 @@ public class Vol {
 	private int heureDepart;
 	private int heureArrivee;
 	private LocalDate dateArrivee;
-	@ManyToOne
+	private Boolean ouvert;
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "idAeroportDepart")
 	private Aeroport aeroportDepart;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "idAeroportArrivee")
 	private Aeroport aeroportArrivee;
 	
 	@OneToMany(mappedBy = "vol")
 	private List<InfosEscale> listEscale;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="idC")
 	private CompagnieAerienne compagnie;
 	
 	@OneToMany(mappedBy = "vol")
 	private List<Reservation> listReservation;
+	
 	
 	
 	
@@ -135,6 +138,24 @@ public class Vol {
 	public void setListReservation(List<Reservation> listReservation) {
 		this.listReservation = listReservation;
 	}
+
+	public Boolean getOuvert() {
+		return ouvert;
+	}
+
+	public void setOuvert(Boolean ouvert) {
+		this.ouvert = ouvert;
+	}
+
+	@Override
+	public String toString() {
+		return "Vol [id=" + id + ", dateDepart=" + dateDepart + ", heureDepart=" + heureDepart + ", heureArrivee="
+				+ heureArrivee + ", dateArrivee=" + dateArrivee + ", ouvert=" + ouvert + ", aeroportDepart="
+				+ aeroportDepart + ", aeroportArrivee=" + aeroportArrivee + ", listEscale=" + listEscale
+				+ ", compagnie=" + compagnie + ", listReservation=" + listReservation + "]";
+	}
+	
+	
 	
 	
 }
